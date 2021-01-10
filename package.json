@@ -15,8 +15,8 @@
     "prepare": "npm run compile",
     "compile": "tsc -p .",
     "test": "c8 mocha build/test",
-    "fix": "gts fix",
-    "lint": "gts lint",
+    "fix": "xo --fix",
+    "lint": "xo",
     "build-binaries": "pkg . --out-path build/binaries",
     "docs-test": "node build/src/cli.js ./README.md"
   },
@@ -56,7 +56,8 @@
     "semantic-release": "^17.0.0",
     "sinon": "^9.0.0",
     "strip-ansi": "^6.0.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.0.0",
+    "xo": "^0.37.1"
   },
   "engines": {
     "node": ">=10"
@@ -75,5 +76,22 @@
     "broken",
     "link",
     "checker"
-  ]
+  ],
+  "xo": {
+    "space": true,
+    "prettier": true,
+    "rules": {
+      "@typescript-eslint/ban-types": "off",
+      "@typescript-eslint/no-confusing-void-expression": "off",
+      "@typescript-eslint/prefer-nullish-coalescing": "off",
+      "capitalized-comments": "off",
+      "no-implicit-coercion": "off",
+      "padding-line-between-statements": "off",
+      "spaced-comment": "off",
+      "unicorn/catch-error-name": "off",
+      "unicorn/explicit-length-check": "off",
+      "unicorn/no-array-reduce": "off",
+      "unicorn/prevent-abbreviations": "off"
+    }
+  }
 }
