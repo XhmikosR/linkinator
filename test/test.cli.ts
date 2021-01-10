@@ -13,7 +13,7 @@ describe('cli', function () {
   this.timeout(10_000);
 
   const pkg = require('../../package.json');
-  const linkinator = pkg.bin.linkinator;
+  const {linkinator} = pkg.bin;
   const node = 'node';
 
   afterEach(async () => {
@@ -50,7 +50,7 @@ describe('cli', function () {
     const res = await execa(node, [linkinator], {
       reject: false,
     });
-    assert.match(res.stdout, /\$ linkinator LOCATION \[ --arguments \]/);
+    assert.match(res.stdout, /\$ linkinator LOCATION \[ --arguments ]/);
   });
 
   it('should flag skipped links', async () => {
@@ -62,7 +62,7 @@ describe('cli', function () {
       '"LICENSE.md, unlinked.md"',
       'test/fixtures/markdown/README.md',
     ]);
-    assert.match(stripAnsi(res.stdout), /\[SKP\]/);
+    assert.match(stripAnsi(res.stdout), /\[SKP]/);
   });
 
   it('should provide CSV if asked nicely', async () => {

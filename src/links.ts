@@ -26,7 +26,7 @@ const linksAttr = {
     'video',
   ],
   srcset: ['img', 'source'],
-} as {[index: string]: string[]};
+} as Record<string, string[]>;
 
 export interface ParsedUrl {
   link: string;
@@ -57,17 +57,17 @@ export function getLinks(source: string, baseUrl: string): ParsedUrl[] {
       const relValuesToIgnore = ['dns-prefetch', 'preconnect'];
       if (
         element.tagName === 'link' &&
-        relValuesToIgnore.includes(element.attribs['rel'])
+        relValuesToIgnore.includes(element.attribs.rel)
       ) {
         return;
       }
 
       // Only for <meta content=""> tags, only validate the url if
       // the content actually looks like a url
-      if (element.tagName === 'meta' && element.attribs['content']) {
+      if (element.tagName === 'meta' && element.attribs.content) {
         try {
-          new URL(element.attribs['content']);
-        } catch (e) {
+          new URL(element.attribs.content);
+        } catch {
           return;
         }
       }
